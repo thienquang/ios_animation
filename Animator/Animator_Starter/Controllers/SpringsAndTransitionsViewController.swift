@@ -51,12 +51,14 @@ class SpringsAndTransitionsViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // TODO: Animation setup
+      titleLabel.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // TODO: Fire initial animations
+      animateTitleInWithSprint()
     }
 
     // MARK: Action buttons
@@ -69,5 +71,16 @@ class SpringsAndTransitionsViewController: UIViewController {
     }
     
     // MARK: Animations & Transitions
-    
+  func animateTitleInWithSprint() {
+    UIView.animate(withDuration: 2.0,
+                   delay: 0.25,
+                   usingSpringWithDamping: 0.7,
+                   initialSpringVelocity: 0,
+                   options: [], animations: {
+                    
+                    self.titleLabel.alpha = 1
+                    self.titleLabel.frame.origin.y += 150
+      
+    }, completion: nil)
+  }
 }
