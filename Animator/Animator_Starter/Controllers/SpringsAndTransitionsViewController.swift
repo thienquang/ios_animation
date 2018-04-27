@@ -52,6 +52,7 @@ class SpringsAndTransitionsViewController: UIViewController {
         
         // TODO: Animation setup
       titleLabel.alpha = 0
+      continueButton.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,6 +60,7 @@ class SpringsAndTransitionsViewController: UIViewController {
         
         // TODO: Fire initial animations
       animateTitleInWithSprint()
+      showContinueButton()
     }
 
     // MARK: Action buttons
@@ -83,4 +85,26 @@ class SpringsAndTransitionsViewController: UIViewController {
       
     }, completion: nil)
   }
+  
+  func showContinueButton() {
+    UIView.transition(with: self.continueButton,
+                      duration: 1.0,
+                      options: [.transitionFlipFromTop], animations: {
+                        self.continueButton.isHidden = false
+                        
+    }, completion: nil)
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
