@@ -52,7 +52,7 @@ class KeyframeAnimationsViewController: UIViewController {
                     // Top
                     UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
                       self.animationTarget.center = AnimationManager.screenTop
-                      self.animationTarget.center.x += self.targetOffset
+                      self.animationTarget.center.y += self.targetOffset
                     })
                     
                     // Left
@@ -64,7 +64,7 @@ class KeyframeAnimationsViewController: UIViewController {
                     // Bottom
                     UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25, animations: {
                       self.animationTarget.center = AnimationManager.screenBottom
-                      self.animationTarget.center.x += self.targetOffset
+                      self.animationTarget.center.y -= self.targetOffset
                     })
                     
     }, completion: nil)
