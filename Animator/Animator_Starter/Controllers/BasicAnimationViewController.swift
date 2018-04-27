@@ -37,6 +37,7 @@ class BasicAnimationViewController: UIViewController {
     
     // TODO: Fire initial animations
     animateTitleLabelIn()
+    animateGraphicIn()
   }
   
   // MARK: - Animations
@@ -46,5 +47,18 @@ class BasicAnimationViewController: UIViewController {
       self.titleLabel.frame.origin.y -= 50
     }
   }
+  
+  func animateGraphicIn() {
+    UIView.animate(withDuration: 1.5, delay: 0.75, options: [], animations: {
+      self.graphic.alpha = 1
+      self.graphic.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+    }) { completed in
+      
+    }
+  }
+  
+  
+  
+  
 }
 
