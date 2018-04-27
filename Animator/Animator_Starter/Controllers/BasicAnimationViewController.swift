@@ -53,8 +53,16 @@ class BasicAnimationViewController: UIViewController {
       self.graphic.alpha = 1
       self.graphic.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
     }) { completed in
-      
+      self.animateLoadingLabelPulse()
+      self.segueToNextViewController(segueID: Constants.Segues.toSpringsVC, delay: 3.0)
     }
+  }
+  
+  func animateLoadingLabelPulse() {
+    UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
+      self.loadingLabel.alpha = 1
+      self.loadingLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+    }, completion: nil)
   }
   
   
