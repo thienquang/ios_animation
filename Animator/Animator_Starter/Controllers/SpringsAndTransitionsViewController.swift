@@ -68,6 +68,8 @@ class SpringsAndTransitionsViewController: UIViewController {
         // TODO: Toggle UI layout
       if sender.selectedSegmentIndex == 1 {
         addTextfieldWithTransition()
+      } else {
+        removeTextFieldWithTransition()
       }
     }
     
@@ -119,20 +121,27 @@ class SpringsAndTransitionsViewController: UIViewController {
     }, completion: nil)
   }
   
+  func removeTextFieldWithTransition() {
+    UIView.transition(with: self.textfieldContainer,
+                      duration: 1.0,
+                      options: [.transitionCrossDissolve],
+                      animations: {
+                        self.phoneTextfield.removeFromSuperview()
+                        
+    }, completion: nil)
+    
+    UIView.animate(withDuration: 1.0,
+                   delay: 0,
+                   options: [.curveEaseInOut], animations: {
+                    self.continueButton.center.y -= 50
+    }, completion: nil)
+  }
+  
   func swapViewWithTransition() {
     UIView.transition(from: self.footerLabel, to: self.swappedFooterLabel, duration: 1.0, options: [.transitionCurlDown]) { completed in
       
       self.segueToNextViewController(segueID: Constants.Segues.toKeyframesVC, delay: 1.5)
     }
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
 }
