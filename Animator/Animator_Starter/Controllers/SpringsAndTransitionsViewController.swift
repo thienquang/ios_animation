@@ -66,10 +66,14 @@ class SpringsAndTransitionsViewController: UIViewController {
     // MARK: Action buttons
     @IBAction func segmentControlOnSelected(_ sender: UISegmentedControl) {
         // TODO: Toggle UI layout
+      if sender.selectedSegmentIndex == 1 {
+        addTextfieldWithTransition()
+      }
     }
     
     @IBAction func continueOnButtonPressed(_ sender: UIButton) {
         // TODO: Swap footer label
+      swapViewWithTransition()
     }
     
     // MARK: Animations & Transitions
@@ -93,10 +97,34 @@ class SpringsAndTransitionsViewController: UIViewController {
                         self.continueButton.isHidden = false
                         
     }, completion: nil)
+    
   }
   
   
+  func addTextfieldWithTransition() {
+    UIView.transition(with: self.textfieldContainer,
+                      duration: 1.0,
+                      options: [.transitionCrossDissolve],
+                      animations: {
+                        self.textfieldContainer.addSubview(self.phoneTextfield)
+                        
+    }, completion: nil)
+    
+    UIView.animate(withDuration: 1.0,
+                   delay: 0,
+                   usingSpringWithDamping: 0.5,
+                   initialSpringVelocity: 0,
+                   options: [.curveEaseInOut], animations: {
+                    self.continueButton.center.y += 50
+    }, completion: nil)
+  }
   
+  func swapViewWithTransition() {
+    UIView.transition(from: self.footerLabel, to: self.swappedFooterLabel, duration: 1.0, options: [.transitionCurlDown]) { completed in
+      
+      self.segueToNextViewController(segueID: Constants.Segues.toKeyframesVC, delay: 1.5)
+    }
+  }
   
   
   
