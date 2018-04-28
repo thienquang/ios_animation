@@ -34,9 +34,9 @@ class ConstraintAnimationsViewController: UIViewController {
     newsletterInfoLabel.text = "Help us make your animation code that much better by subscribing to our weekly newsletter! \n\n It's free and you can unsubscribe any time without hurting our feelings...much."
     newsletterInfoLabel.font = UIFont(name: "Bodoni 72 Oldstyle", size: 15)
     newsletterInfoLabel.textColor = .darkGray
-    newsletterInfoLabel.textAlignment = .left
-    newsletterInfoLabel.alpha = 1
-    newsletterInfoLabel.backgroundColor = .black
+    newsletterInfoLabel.textAlignment = .center
+    newsletterInfoLabel.alpha = 0
+    newsletterInfoLabel.backgroundColor = .clear
     newsletterInfoLabel.translatesAutoresizingMaskIntoConstraints = false
     newsletterInfoLabel.numberOfLines = 0
     
@@ -94,6 +94,7 @@ class ConstraintAnimationsViewController: UIViewController {
                    options: [], animations: {
                     self.view.layoutIfNeeded()
     }) { completed in
+      self.addDynamicInfoLabel()
       
     }
   }
@@ -117,6 +118,23 @@ class ConstraintAnimationsViewController: UIViewController {
     UIView.animate(withDuration: 0.75, animations: {
       self.view.layoutIfNeeded()
     })
+  }
+  
+  func addDynamicInfoLabel() {
+    newsletterView.addSubview(newsletterInfoLabel)
+    
+    let xAnchor = newsletterInfoLabel.centerXAnchor.constraint(equalTo: newsletterView.leftAnchor, constant: -75)
+    let yAnchor = newsletterInfoLabel.centerYAnchor.constraint(equalTo: newsletterView.centerYAnchor)
+    let widthAnchor = newsletterInfoLabel.widthAnchor.constraint(equalTo: newsletterView.widthAnchor, multiplier: 0.75)
+    let heightAnchor = newsletterInfoLabel.heightAnchor.constraint(equalTo: newsletterInfoLabel.widthAnchor)
+    
+    NSLayoutConstraint.activate([xAnchor, yAnchor, widthAnchor, heightAnchor])
+    self.view.layoutIfNeeded()
+    UIView.animate(withDuration: 1.0) {
+      xAnchor.constant = self.newsletterView.frame.size.width/2
+      self.newsletterInfoLabel.alpha = 1
+      self.view.layoutIfNeeded()
+    }
   }
 }
 
