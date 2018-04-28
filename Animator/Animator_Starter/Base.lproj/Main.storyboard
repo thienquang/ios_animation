@@ -279,7 +279,7 @@
                         <constraints>
                             <constraint firstItem="A2H-Wu-Jjp" firstAttribute="centerX" secondItem="xCd-3S-c4n" secondAttribute="centerX" id="Jxf-5Z-fIo"/>
                             <constraint firstItem="mLw-aS-HsI" firstAttribute="centerX" secondItem="xCd-3S-c4n" secondAttribute="centerX" id="XrB-Be-dbj"/>
-                            <constraint firstItem="mLw-aS-HsI" firstAttribute="top" secondItem="iLN-y7-YlT" secondAttribute="top" constant="155" id="tuj-m4-Via"/>
+                            <constraint firstItem="mLw-aS-HsI" firstAttribute="top" secondItem="iLN-y7-YlT" secondAttribute="top" constant="155" identifier="WelcomeLabelTop" id="tuj-m4-Via"/>
                             <constraint firstItem="A2H-Wu-Jjp" firstAttribute="centerY" secondItem="xCd-3S-c4n" secondAttribute="centerY" id="xWH-4X-IZi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iLN-y7-YlT"/>

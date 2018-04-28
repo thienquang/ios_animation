@@ -61,6 +61,7 @@ class ConstraintAnimationsViewController: UIViewController {
   // MARK: Actions
   @IBAction func infoOnButtonPressed(_ sender: Any) {
     animateNewsletterHeight()
+    animateWelcomeLabel()
   }
   
   // MARK: Animations
@@ -95,6 +96,27 @@ class ConstraintAnimationsViewController: UIViewController {
     }) { completed in
       
     }
+  }
+  
+  func animateWelcomeLabel() {
+    
+    let modifiedWelcomeTop = NSLayoutConstraint(item: welcomeLabel,
+                                                attribute: .top,
+                                                relatedBy: .equal,
+                                                toItem: welcomeLabel.superview,
+                                                attribute: .top, multiplier: 1,
+                                                constant: 100)
+    
+    if let welcomTop = view.returnConstraint(withID: "WelcomeLabelTop") {
+      print(welcomTop.description)
+      welcomTop.isActive = false
+      modifiedWelcomeTop.isActive = true
+      
+    }
+    
+    UIView.animate(withDuration: 0.75, animations: {
+      self.view.layoutIfNeeded()
+    })
   }
 }
 
