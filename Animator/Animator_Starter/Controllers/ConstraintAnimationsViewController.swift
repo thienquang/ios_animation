@@ -59,6 +59,9 @@ class ConstraintAnimationsViewController: UIViewController {
   }
   
   // MARK: Actions
+  @IBAction func infoOnButtonPressed(_ sender: Any) {
+    animateNewsletterHeight()
+  }
   
   // MARK: Animations
   func animateViewsOnScreen() {
@@ -75,20 +78,36 @@ class ConstraintAnimationsViewController: UIViewController {
     }, completion: nil)
   }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  func animateNewsletterHeight() {
+    if let heightConstraint = newsletterView.returnConstraint(withID: "NewsLetterHeight") {
+      print(heightConstraint.description)
+      heightConstraint.constant = 350
+    } else {
+      print("No constraint fonud for ID...")
+    }
+    
+    UIView.animate(withDuration: 1.75,
+                   delay: 0,
+                   usingSpringWithDamping: 0.7,
+                   initialSpringVelocity: 0,
+                   options: [], animations: {
+                    self.view.layoutIfNeeded()
+    }) { completed in
+      
+    }
+  }
+}
+
+extension UIView {
+  func returnConstraint(withID: String) -> NSLayoutConstraint? {
+    var constraintSearch: NSLayoutConstraint!
+    
+    for constraint in self.constraints {
+      if constraint.identifier == withID {
+        constraintSearch = constraint
+      }
+    }
+    
+    return constraintSearch
+  }
 }

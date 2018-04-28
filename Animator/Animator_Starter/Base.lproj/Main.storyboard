@@ -257,6 +257,9 @@
                                         <state key="normal" title="More Info">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="infoOnButtonPressed:" destination="6rO-k6-zEZ" eventType="touchUpInside" id="T5x-DO-3kL"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -268,7 +271,7 @@
                                     <constraint firstItem="ibm-Aa-CxB" firstAttribute="centerX" secondItem="A2H-Wu-Jjp" secondAttribute="centerX" id="gS7-m7-3ax"/>
                                     <constraint firstAttribute="width" constant="280" id="ty5-Vt-MHJ"/>
                                     <constraint firstAttribute="trailing" secondItem="ibm-Aa-CxB" secondAttribute="trailing" constant="73" id="uFj-Tv-ZB8"/>
-                                    <constraint firstAttribute="height" constant="121" id="yo9-Xp-Gyh"/>
+                                    <constraint firstAttribute="height" constant="121" identifier="NewsLetterHeight" id="yo9-Xp-Gyh"/>
                                 </constraints>
                             </view>
                         </subviews>
