@@ -35,10 +35,13 @@ class KeyframeAnimationsViewController: UIViewController {
     
     // TODO: Fire keyframe animation
     bounceImageWithKeyframes()
+    
+    segueToNextViewController(segueID: Constants.Segues.toConstraintsVC, delay: 8.0)
   }
   
   // MARK: Keyframe animation
   func bounceImageWithKeyframes() {
+    let origin = animationTarget.center
     UIView.animateKeyframes(withDuration: 4.0,
                    delay: 0,
                    options: [.repeat], animations: {
@@ -63,8 +66,10 @@ class KeyframeAnimationsViewController: UIViewController {
                     
                     // Bottom
                     UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25, animations: {
-                      self.animationTarget.center = AnimationManager.screenBottom
-                      self.animationTarget.center.y -= self.targetOffset
+                      
+                      self.animationTarget.center = origin
+//                      self.animationTarget.center = AnimationManager.screenBottom
+//                      self.animationTarget.center.y -= self.targetOffset
                     })
                     
     }, completion: nil)

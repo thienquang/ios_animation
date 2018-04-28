@@ -9,52 +9,82 @@
 import UIKit
 
 class ConstraintAnimationsViewController: UIViewController {
+  
+  // MARK: Storyboard outlets
+  @IBOutlet weak var welcomeLabel: UILabel!
+  @IBOutlet weak var newsletterView: UIView!
+  @IBOutlet weak var welcomeCenterX: NSLayoutConstraint!
+  @IBOutlet weak var newsletterCenterX: NSLayoutConstraint!
+  
+  // MARK: Additional variables
+  var newsletterInfoLabel = UILabel()
+  
+  // MARK: Appearance
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
+  // MARK: View lifecycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    // MARK: Storyboard outlets
-    @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var newsletterView: UIView!
-    @IBOutlet weak var welcomeCenterX: NSLayoutConstraint!
-    @IBOutlet weak var newsletterCenterX: NSLayoutConstraint!
+    // Programmatic views
+    newsletterInfoLabel.backgroundColor = .clear
+    newsletterInfoLabel.text = "Help us make your animation code that much better by subscribing to our weekly newsletter! \n\n It's free and you can unsubscribe any time without hurting our feelings...much."
+    newsletterInfoLabel.font = UIFont(name: "Bodoni 72 Oldstyle", size: 15)
+    newsletterInfoLabel.textColor = .darkGray
+    newsletterInfoLabel.textAlignment = .left
+    newsletterInfoLabel.alpha = 1
+    newsletterInfoLabel.backgroundColor = .black
+    newsletterInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+    newsletterInfoLabel.numberOfLines = 0
     
-    // MARK: Additional variables
-    var newsletterInfoLabel = UILabel()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
-    // MARK: Appearance
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    // TODO: Offscreen positioning
+    welcomeCenterX.constant -= AnimationManager.screenBounds.width
+    newsletterCenterX.constant -= AnimationManager.screenBounds.width
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     
-    // MARK: View lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Programmatic views
-        newsletterInfoLabel.backgroundColor = .clear
-        newsletterInfoLabel.text = "Help us make your animation code that much better by subscribing to our weekly newsletter! \n\n It's free and you can unsubscribe any time without hurting our feelings...much."
-        newsletterInfoLabel.font = UIFont(name: "Bodoni 72 Oldstyle", size: 15)
-        newsletterInfoLabel.textColor = .darkGray
-        newsletterInfoLabel.textAlignment = .left
-        newsletterInfoLabel.alpha = 1
-        newsletterInfoLabel.backgroundColor = .black
-        newsletterInfoLabel.translatesAutoresizingMaskIntoConstraints = false
-        newsletterInfoLabel.numberOfLines = 0
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // TODO: Offscreen positioning
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // TODO: Fire initial animations
-    }
-    
-    // MARK: Actions
-    
-    // MARK: Animations
-
+    // TODO: Fire initial animations
+    animateViewsOnScreen()
+  }
+  
+  // MARK: Actions
+  
+  // MARK: Animations
+  func animateViewsOnScreen() {
+    UIView.animate(withDuration: 1.5,
+                   delay: 0.25,
+                   usingSpringWithDamping: 0.8,
+                   initialSpringVelocity: 0,
+                   options: [.curveEaseInOut], animations: {
+                    self.welcomeCenterX.constant += AnimationManager.screenBounds.width
+                    self.newsletterCenterX.constant += AnimationManager.screenBounds.width
+                    self.view.layoutIfNeeded()
+    }, completion: nil)
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
