@@ -18,6 +18,7 @@ class ConstraintAnimationsViewController: UIViewController {
   
   // MARK: Additional variables
   var newsletterInfoLabel = UILabel()
+  var animManager: AnimationManager!
   
   // MARK: Appearance
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -45,8 +46,9 @@ class ConstraintAnimationsViewController: UIViewController {
     super.viewWillAppear(animated)
     
     // TODO: Offscreen positioning
-    welcomeCenterX.constant -= AnimationManager.screenBounds.width
-    newsletterCenterX.constant -= AnimationManager.screenBounds.width
+    animManager = AnimationManager(activeConstraints: [welcomeCenterX, newsletterCenterX])
+//    welcomeCenterX.constant -= AnimationManager.screenBounds.width
+//    newsletterCenterX.constant -= AnimationManager.screenBounds.width
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -65,8 +67,10 @@ class ConstraintAnimationsViewController: UIViewController {
                    usingSpringWithDamping: 0.8,
                    initialSpringVelocity: 0,
                    options: [.curveEaseInOut], animations: {
-                    self.welcomeCenterX.constant += AnimationManager.screenBounds.width
-                    self.newsletterCenterX.constant += AnimationManager.screenBounds.width
+//                    self.welcomeCenterX.constant += AnimationManager.screenBounds.width
+//                    self.newsletterCenterX.constant += AnimationManager.screenBounds.width
+                    self.welcomeCenterX.constant = self.animManager.constraintOrigins[0]
+                    self.newsletterCenterX.constant =  self.animManager.constraintOrigins[1]
                     self.view.layoutIfNeeded()
     }, completion: nil)
   }
